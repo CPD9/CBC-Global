@@ -32,9 +32,9 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'pages',
     'projects',
-    'contractors',
-    'accounts',
-    'contacts',
+    # 'contractors',
+    # 'accounts',
+    # 'contacts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'cbc.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'btredb',
-        'USER': 'postgres',
-        'PASSWORD': '123456',
-        'HOST': 'localhost'
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'btredb',
+        # 'USER': 'postgres',
+        # 'PASSWORD': '123456',
+        # 'HOST': 'localhost'
     }
 }
 
