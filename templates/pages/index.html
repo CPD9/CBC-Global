@@ -1,15 +1,12 @@
-{% extends 'base.html' %}
-
-{% load static %}
-
-{% block title %} | Welcome{% endblock %}
+{% extends 'base.html' %} 
 
 {% load humanize %}
 
-{% block content %}
+{% block title %} | Welcome {% endblock %}
 
-  <!-- Showcase -->
-  <section id="showcase">
+{% block content %}
+<!-- Showcase -->
+<section id="showcase">
     <div class="container text-center">
       <div class="home-search p-5">
         <div class="overlay p-5">
@@ -36,7 +33,7 @@
                   <label class="sr-only">State</label>
                   <select name="state" class="form-control">
                     <option selected="true" disabled="disabled">State (All)</option>
-                    {% for key, value in state_choices.items %}
+                    {% for key,value in state_choices.items %}
                       <option value="{{ key }}">{{ value }}</option>
                     {% endfor %}
                   </select>
@@ -48,7 +45,7 @@
                   <label class="sr-only">Bedrooms</label>
                   <select name="bedrooms" class="form-control">
                     <option selected="true" disabled="disabled">Bedrooms (All)</option>
-                    {% for key, value in bedroom_choices.items %}
+                    {% for key,value in bedroom_choices.items %}
                       <option value="{{ key }}">{{ value }}</option>
                     {% endfor %}
                   </select>
@@ -56,7 +53,7 @@
                 <div class="col-md-6 mb-3">
                   <select name="price" class="form-control" id="type">
                     <option selected="true" disabled="disabled">Max Price (Any)</option>
-                    {% for key, value in price_choices.items %}
+                    {% for key,value in price_choices.items %}
                       <option value="{{ key }}">{{ value }}</option>
                     {% endfor %}
                   </select>
@@ -69,68 +66,66 @@
       </div>
     </div>
   </section>
-
-  <br>
+<br>
   <!-- Alerts -->
   {% include 'partials/_alerts.html' %}
 
-  <!-- projects -->
-  <section id="projects" class="py-5">
+  <!-- Listings -->
+  <section id="listings" class="py-5">
     <div class="container">
-      <h3 class="text-center mb-3">Latest Projects</h3>
+      <h3 class="text-center mb-3">Latest Listings</h3>
       <div class="row">
-        {% if projects %}
-          {% for project in projects %}
-            <!-- project 1 -->
+        {% if listings %}
+          {% for listing in listings %}
+            <!-- Listing 1 -->
             <div class="col-md-6 col-lg-4 mb-4">
-              <div class="card project-preview">
-                <img class="card-img-top" src="{{project.photo_main.url}}" alt="">
+              <div class="card listing-preview">
+                <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="">
                 <div class="card-img-overlay">
                   <h2>
-                    <span class="badge badge-secondary text-white">${{ project.price | intcomma }}</span>
+                    <span class="badge badge-secondary text-white">${{ listing.price | intcomma }}</span>
                   </h2>
                 </div>
                 <div class="card-body">
-                  <div class="project-heading text-center">
-                    <h4 class="text-primary">{{ project.title }}</h4>
+                  <div class="listing-heading text-center">
+                    <h4 class="text-primary">{{ listing.title }}</h4>
                     <p>
-                      <i class="fas fa-map-marker text-secondary"></i> {{ project.city }} {{ project.state }}, {{ project.zipcode }}</p>
+                      <i class="fas fa-map-marker text-secondary"></i> {{ listing.city }} {{ listing.state }}, {{ listing.zipcode }}</p>
                   </div>
                   <hr>
                   <div class="row py-2 text-secondary">
                     <div class="col-6">
-                      <i class="fas fa-th-large"></i> Sqft: {{ project.sqft }}</div>
+                      <i class="fas fa-th-large"></i> Sqft: {{ listing.sqft }}</div>
                     <div class="col-6">
-                      <i class="fas fa-car"></i> Garage: {{ project.garage }}</div>
+                      <i class="fas fa-car"></i> Garage: {{ listing.garage }}</div>
                   </div>
                   <div class="row py-2 text-secondary">
                     <div class="col-6">
-                      <i class="fas fa-bed"></i> Bedrooms: {{ project.bedrooms }}</div>
+                      <i class="fas fa-bed"></i> Bedrooms: {{ listing.bedrooms }}</div>
                     <div class="col-6">
-                      <i class="fas fa-bath"></i> Bathrooms: {{ project.bathrooms }}</div>
+                      <i class="fas fa-bath"></i> Bathrooms: {{ listing.bathrooms }}</div>
                   </div>
                   <hr>
                   <div class="row py-2 text-secondary">
                     <div class="col-6">
-                      <i class="fas fa-user"></i> {{ project.realtor }}</div>
+                      <i class="fas fa-user"></i> {{ listing.realtor }}</div>
                   </div>
                   <div class="row text-secondary pb-2">
                     <div class="col-6">
-                      <i class="fas fa-clock"></i> {{ project.list_date | timesince }}</div>
+                      <i class="fas fa-clock"></i> {{ listing.list_date | timesince }}</div>
                   </div>
                   <hr>
-                  <a href="{% url 'project' project.id %}" class="btn btn-primary btn-block">More Info</a>
+                  <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block">More Info</a>
                 </div>
               </div>
             </div>
           {% endfor %}
         {% else %}
           <div class="col-md-12">
-            <p>No Projects Available</p>
+            <p>No Listings Available</p>
           </div>
-
         {% endif %}
-        
+
       </div>
     </div>
   </section>
@@ -148,19 +143,18 @@
         <div class="col-md-4">
           <i class="fas fa-home fa-4x mr-4"></i>
           <hr>
-          <h3>Infrastructure Development</h3>
+          <h3>Propery Management</h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, debitis nam! Repudiandae, provident iste consequatur
             hic dignissimos ratione ea quae.</p>
         </div>
         <div class="col-md-4">
           <i class="fas fa-suitcase fa-4x mr-4"></i>
           <hr>
-          <h3>Construction Equipments</h3>
+          <h3>Renting & Selling</h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, debitis nam! Repudiandae, provident iste consequatur
             hic dignissimos ratione ea quae.</p>
         </div>
       </div>
     </div>
   </section>
-
 {% endblock %}

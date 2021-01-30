@@ -1,35 +1,37 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from listings.choices import state_choices
+# from projects.choices import state_choices
 
-from listings.models import Listing
-from realters.models import Realtor
+from projects.models import Project
+from certificates.models import Certificate
 
 
 def index(request):
-    listings = Listing.objects.order_by(
-        '-list_date').filter(is_published=True)[:3]
+    # projects = project.objects.order_by(
+    #     '-list_date').filter(is_published=True)[:3]
 
-    context = {
-        'listings': listings,
-        'state_choices': state_choices,
-        'bedroom_choices': bedroom_choices,
-        'price_choices': price_choices,
-    }
+    # context = {
+    #     'projects': projects,
+    #     # 'state_choices': state_choices,
+    # }
 
-    return render(request, 'pages/index.html', context)
+    return render(request, 'pages/index.html')
 
 
 def about(request):
-    # Get all realtors
-    realtors = Realtor.objects.order_by('hire_date')
+    return render(request, 'pages/about.html')
+
+
+def about(request):
+    # Get all certificates
+    certificates = Certificate.objects.order_by('hire_date')
 
     # Get MVP
-    mvp_realtors = Realtor.objects.all().filter(is_mvp=True)
+    mvp_certificates = Certificate.objects.all().filter(is_mvp=True)
 
     context = {
-        'realtors': realtors,
-        'mvp_realtors': mvp_realtors
+        'certificates': certificates,
+        'mvp_certificates': mvp_certificates
     }
 
-    return render(request, 'pages/about.html', context)
+    return render(request, 'pages/about.html')

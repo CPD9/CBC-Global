@@ -1,34 +1,43 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{% static 'css/all.css' %}">
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <!-- Custom -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- Lightbox -->
-    <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
-    <title>CBC GLOBAL {% block title %} {% endblock %}</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'css/all.css' %}">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <!-- Custom -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <!-- Lightbox -->
+  <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicon_io-3/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon_io-3/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon_io-3/favicon-16x16.png' %}">
+  <link rel="manifest" href="{% static 'img/favicon_io-3/site.webmanifest' %}">
+
+  <title>CBC GLOBAL {% block title %}{% endblock %}</title>
 </head>
+
 <body>
-    <!-- Top Bar -->
-    {% include 'partials/_topbar.html' %}
+  <!-- Top Bar -->
+  {% include 'partials/_topbar.html' %}
+  <!-- NavBar -->
+  {% include 'partials/_navbar.html' %}
+    <!-- Main Content -->
+  {% block content %} {% endblock %}
+  <!-- Footer -->
+  {% include 'partials/_footer.html' %}
   
-    <!-- Navbar -->
-    {% include 'partials/_navbar.html' %}
 
-    {% block content %} {% endblock%}
-
-    <!-- Footer -->
-    {% include 'partials/_footer.html' %}
-
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'js/lightbox.min.js' %}"></script>
+  <script src="{% static 'js/jquery-3.3.1.min.js' %} "></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %} "></script>
+  <script src="{% static 'js/lightbox.min.js' %} "></script>
+  <script src="{% static 'js/main.js' %} "></script>
 </body>
+
 </html>

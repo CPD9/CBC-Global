@@ -1,0 +1,22 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block extrahead %}
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicon_io-3/apple-touch-icon.png' %}">
+<link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon_io-3/favicon-32x32.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon_io-3/favicon-16x16.png' %}">
+<link rel="manifest" href="{% static 'img/favicon_io-3/site.webmanifest' %}">
+{% endblock %}
+
+
+
+{% block branding %}
+<h1 id="head">
+    <img src="{% static 'img/logo.png' %}" alt="CBC Global" height="50" width="80" class="brand_img"> Admin Area
+</h1> 
+{% endblock %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock %}

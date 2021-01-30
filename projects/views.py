@@ -1,13 +1,13 @@
 from django.shortcuts import get_object_or_404, render
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from .choices import price_choices, bedroom_choices, state_choices
+from .choices import state_choices, type_choices
 
 
 from .models import Project
 
 
 def index(request):
-    project = Project.objects.order_by('-list_date').filter(is_published=True)
+    projects = Project.objects.order_by('-list_date')
 
     paginator = Paginator(projects, 6)
     page = request.GET.get('page')
@@ -51,11 +51,11 @@ def search(request):
         if state:
             queryset_list = queryset_list.filter(state__iexact=state)
 
-    # Bedroom
-    if 'bedroom' in request.GET:
-        bedroom = request.GET['bedroom']
-        if bedroom:
-            queryset_list = queryset_list.filter(bedroom__lte=bedroom)
+    # Types
+    if 'type' in request.GET:
+        type = request.GET['type']
+        if type:
+            queryset_list = queryset_list.filter(type__iexact=type)
 
     # Price
     if 'price' in request.GET:
@@ -65,7 +65,7 @@ def search(request):
 
     context = {
         'state_choices': state_choices,
-        'bedroom_choices': bedroom_choices,
+        'type_choices': type_choices,
         'price_choices': price_choices,
         'projects': queryset_list,
         'values': request.GET

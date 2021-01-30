@@ -32,15 +32,16 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'pages',
     'projects',
-    # 'contractors',
-    # 'accounts',
-    # 'contacts',
+    'certificates',
+    'accounts',
+    'contacts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -79,11 +80,11 @@ WSGI_APPLICATION = 'cbc.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': 'btredb',
-        # 'USER': 'postgres',
-        # 'PASSWORD': '123456',
-        # 'HOST': 'localhost'
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'cbcdb',
+        'USER': 'postgres',
+        'PASSWORD': '2015cBc2021',
+        'HOST': 'localhost'
     }
 }
 
@@ -127,7 +128,7 @@ USE_TZ = True
 STATIC_ROOT= os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'btre/static')
+    os.path.join(BASE_DIR, 'cbc/static')
 ]
 
 # Media Folder Setitngs
