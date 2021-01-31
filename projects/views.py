@@ -20,7 +20,7 @@ def index(request):
 
 
 def project(request, project_id):
-    project = get_object_or_404(project, pk=project_id)
+    project = get_object_or_404(Project, pk=project_id)
 
     context = {
         'project': project
@@ -30,7 +30,7 @@ def project(request, project_id):
 
 
 def search(request):
-    queryset_list = project.objects.order_by('-list_date')
+    queryset_list = Project.objects.order_by('-list_date')
 
     # Keywords
     if 'keywords' in request.GET:
@@ -66,7 +66,6 @@ def search(request):
     context = {
         'state_choices': state_choices,
         'type_choices': type_choices,
-        'price_choices': price_choices,
         'projects': queryset_list,
         'values': request.GET
     }

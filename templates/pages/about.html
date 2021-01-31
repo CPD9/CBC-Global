@@ -48,14 +48,14 @@
         
           
             <div class="col-md-4">
-              {% if mvp_realtors %}
-                {% for realtor in mvp_realtors %}
+              {% if mvp_certificates %}
+                {% for certificate in mvp_certificates %}
                   <div class="card">
-                    <img class="card-img-top" src="{{ realtor.photo.url }}" alt="Seller of the month">
+                    <img class="card-img-top" src="{{ certificate.photo.url }}" alt="Award Winning">
                     <div class="card-body">
-                      <h5 class="card-title">Seller Of The Month</h5>
-                      <h6 class="text-secondary">{{ realtor.name }}</h6>
-                      <p class="card-text">{{ realtor.description }}
+                      <h5 class="card-title">Award Winning</h5>
+                      <h6 class="text-secondary">{{ certificate.name }}</h6>
+                      <p class="card-text">{{ certificate.description }}
                         
                       </p>
                     </div>
@@ -82,27 +82,65 @@
   <!-- Team -->
   <section id="team" class="py-5">
     <div class="container">
-      <h2 class="text-center">Our Team</h2>
+      <h2 class="text-center">Certificates & Awards</h2>
       <div class="row text-center">
-        {% if realtors %}
-          {% for realtor in realtors %}
-            <div class="col-md-4">
-              <img src="{{ realtor.photo.url }}" alt="" class="rounded-circle mb-3">
-              <h4>{{ realtor.name }}</h4>
-              <p class="text-success">Realtor</p>
-              <hr>
-              <p>
-                <i class="fas fa-phone"></i> {{ realtor.phone }}</p>
-              <p>
-                <i class="fas fa-envelope-open"></i> {{ realtor.email }}</p>
-            </div>
+        {% if certificates %}
+          {% for certificate in certificates %}
+        
+        <div class="col-md-4">
+          <img src="{{ certificate.photo.url }}" alt="" class="card-body">
+          <h4>{{ certificate.name }}</h4>
+          <p class="text-success">
+            <i class="fas fa-award text-success mb-3"></i>
+            Certificate</p>
+          <hr>
+          
+      </div>
           {% endfor %}
         {% else %}
           <div class="col-md-12">
-            <p>No Realtors Available</p>
+            <p>No certificates Available</p>
           </div>
         {% endif %}
 
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        {% if certificates.has_other_pages %}
+          <ul class="pagination">
+            {% if certificates.has_previous %}
+              <li class="page-item">
+                <a href="?page={{certificates.previous_page_number}}" class="page-link">&laquo;</a>
+              </li>
+            {% else %}
+              <li class="page-item disabled">
+                <a class="page-link">&laquo;</a>
+              </li>
+            {% endif %}
+            {% for i in certificates.paginator.page_range %}
+              {% if certificates.number == i %}
+                <li class="page-item active">
+                  <a class="page-link">{{i}}</a>
+                </li>
+              {% else %}
+                <li class="page-item">
+                  <a href="?page={{i}}" class="page-link">{{i}}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+            {% if certificates.has_next %}
+              <li class="page-item">
+                <a href="?page={{certificates.next_page_number}}" class="page-link">&raquo;</a>
+              </li>
+            {% else %}
+              <li class="page-item disabled">
+                <a class="page-link">&raquo;</a>
+              </li>
+            {% endif %}
+          </ul>
+        {% endif %}
       </div>
     </div>
   </section>

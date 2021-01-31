@@ -11,7 +11,7 @@
     <div class="col-md-12">
         <h1 class="display-4">{{ project.title }}</h1>
         <p class="lead">
-        <i class="fas fa-map-marker"></i> {{ project.city }} {{ project.state }}, {{ project.zipcode }}</p>
+        <i class="fas fa-map-marker"></i> {{ project.city }}, {{ project.state }}</p>
     </div>
     </div>
 </div>
@@ -34,7 +34,10 @@
 </div>
 </section>
 
-<!-- project -->
+<!-- Alerts -->
+{% include 'partials/_alerts.html' %}
+
+<!-- Project -->
 <section id="project" class="py-4">
 <div class="container">
     <a href="{% url 'projects' %}" class="btn btn-light mb-4">Back To Projects</a>
@@ -102,41 +105,31 @@
                 <span class="float-right">NGN{{ project.price | intcomma }}</span>
             </li>
             <li class="list-group-item text-secondary">
-                <i class="fas fa-bed"></i> Bedrooms:
-                <span class="float-right">{{ project.bedrooms }}</span>
+                <i class="fas fa-cog"></i> Type:
+                <span class="float-right">{{ project.type }}</span>
             </li>
             <li class="list-group-item text-secondary">
-                <i class="fas fa-bath"></i> Bathrooms:
-                <span class="float-right">{{ project.bathrooms }}</span>
-            </li>
-            <li class="list-group-item text-secondary">
-                <i class="fas fa-car"></i> Garage:
-                <span class="float-right">{{ project.garage }}
-                </span>
+                <i class="fas fa-calendar"></i> Project Date:
+                <span class="float-right">{{ project.list_date  }}</span>
             </li>
             </ul>
         </div>
         <div class="col-md-6">
             <ul class="list-group list-group-flush">
-            <li class="list-group-item text-secondary">
-                <i class="fas fa-th-large"></i> Square Feet:
-                <span class="float-right">{{ project.sqft }}</span>
-            </li>
-            <li class="list-group-item text-secondary">
-                <i class="fas fa-square"></i> Lot Size:
-                <span class="float-right">{{ project.lot_size }}
-                </span>
-            </li>
-            <li class="list-group-item text-secondary">
-                <i class="fas fa-calendar"></i> project Date:
-                <span class="float-right">{{ project.list_date  }}</span>
-            </li>
-            <li class="list-group-item text-secondary">
-                <i class="fas fa-bed"></i> Realtor:
-                <span class="float-right">{{ project.realtor }}
-                </span>
-            </li>
-
+                <li class="list-group-item text-secondary">
+                    <i class="fas fa-road"></i> Kilometers:
+                    <span class="float-right">{{ project.km }} km</span>
+                </li>
+                <li class="list-group-item text-secondary">
+                    <i class="fas fa-square"></i> Hectares:
+                    <span class="float-right">{{ project.lot_size }}
+                    </span>
+                </li>
+                <li class="list-group-item text-secondary">
+                    <i class="fas fa-user"></i> Client:
+                    <span class="float-right">{{ project.certificate }}
+                    </span>
+                </li>
 
             </ul>
         </div>
@@ -145,17 +138,18 @@
         <!-- Description -->
         <div class="row mb-5">
         <div class="col-md-12">
+            <p><h3>Project Description</h3></p>
             {{ project.description }}
         </div>
         </div>
     </div>
     <div class="col-md-3">
         <div class="card mb-3">
-        <img class="card-img-top" src="{{ project.realtor.photo.url }}" alt="">
+        <img class="card-img-top" src="{{ project.certificate.photo.url }}" alt="">
         <div class="card-body">
-            <h5 class="card-title">Property Realtor</h5>
+            <h5 class="card-title">Project Certificate</h5>
             <h6 class="text-secondary">
-                {{ project.realtor }}
+                {{ project.certificate }}
             </h6>
         </div>
         </div>
@@ -183,7 +177,7 @@
             {% else %}
                 <input type="hidden" name="user_id" value="0">
             {% endif %}
-            <input type="hidden" name="realtor_email" value="{{ project.realtor.email }}">
+            <input type="hidden" name="certificate_email" value="{{ project.certificate.email }}">
             <input type="hidden" name="project_id" value="{{ project.id }}">
         <div class="form-group">
             <label for="property_name" class="col-form-label">Property:</label>

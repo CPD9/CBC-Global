@@ -21,7 +21,7 @@
               <div class="form-row">
                 <div class="col-md-4 mb-3">
                   <label class="sr-only">Keywords</label>
-                  <input type="text" name="keywords" class="form-control" placeholder="Keyword (Pool, Garage, etc)">
+                  <input type="text" name="keywords" class="form-control" placeholder="Keyword (Road, Building, Bridge etc)">
                 </div>
 
                 <div class="col-md-4 mb-3">
@@ -29,35 +29,34 @@
                   <input type="text" name="city" class="form-control" placeholder="City">
                 </div>
 
+
+
                 <div class="col-md-4 mb-3">
                   <label class="sr-only">State</label>
                   <select name="state" class="form-control">
                     <option selected="true" disabled="disabled">State (All)</option>
-                    {% for key,value in state_choices.items %}
-                      <option value="{{ key }}">{{ value }}</option>
-                    {% endfor %}
-                  </select>
+                        {% for key, value in state_choices.items %}
+                            <option value="{{ key }}"
+                            {% if key == values.state %}
+                            selected
+                            {% endif %}
+                        >{{ value }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
               </div>
               <!-- Form Row 2 -->
               <div class="form-row">
-                <div class="col-md-6 mb-3">
-                  <label class="sr-only">Bedrooms</label>
-                  <select name="bedrooms" class="form-control">
-                    <option selected="true" disabled="disabled">Bedrooms (All)</option>
-                    {% for key,value in bedroom_choices.items %}
+                <div class="col-md-8 mb-3">
+                  <label class="sr-only">Construction Type</label>
+                  <select name="type" class="form-control">
+                    <option selected="true" disabled="disabled">Construction Type</option>
+                    {% for key, value in type_choices.items %}
                       <option value="{{ key }}">{{ value }}</option>
                     {% endfor %}
                   </select>
                 </div>
-                <div class="col-md-6 mb-3">
-                  <select name="price" class="form-control" id="type">
-                    <option selected="true" disabled="disabled">Max Price (Any)</option>
-                    {% for key,value in price_choices.items %}
-                      <option value="{{ key }}">{{ value }}</option>
-                    {% endfor %}
-                  </select>
-                </div>
+                
               </div>
               <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
             </form>
@@ -73,56 +72,94 @@
   <!-- Listings -->
   <section id="listings" class="py-5">
     <div class="container">
-      <h3 class="text-center mb-3">Latest Listings</h3>
+      <a href="{% url 'projects'%}">
+        <h3 class="text-center mb-3">Latest Projects</h3>
+      </a>
       <div class="row">
-        {% if listings %}
-          {% for listing in listings %}
-            <!-- Listing 1 -->
+        {% if projects %}
+          {% for project in projects %}
+            <!-- project 1 -->
             <div class="col-md-6 col-lg-4 mb-4">
               <div class="card listing-preview">
-                <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="">
+                <img class="card-img-top" src="{{ project.photo_main.url }}" alt="">
                 <div class="card-img-overlay">
                   <h2>
-                    <span class="badge badge-secondary text-white">${{ listing.price | intcomma }}</span>
+                    <span class="badge badge-secondary text-white">NGN {{ project.price | intword }}</span>
                   </h2>
                 </div>
                 <div class="card-body">
                   <div class="listing-heading text-center">
-                    <h4 class="text-primary">{{ listing.title }}</h4>
+                    <h4 class="text-primary">{{ project.title }}</h4>
                     <p>
-                      <i class="fas fa-map-marker text-secondary"></i> {{ listing.city }} {{ listing.state }}, {{ listing.zipcode }}</p>
+                      <i class="fas fa-map-marker text-secondary"></i> {{ project.city }}, {{ project.state }}</p>
                   </div>
                   <hr>
                   <div class="row py-2 text-secondary">
                     <div class="col-6">
-                      <i class="fas fa-th-large"></i> Sqft: {{ listing.sqft }}</div>
-                    <div class="col-6">
-                      <i class="fas fa-car"></i> Garage: {{ listing.garage }}</div>
+                      <i class="fas fa-th-large"></i> KM: {{ project.km }}</div>
                   </div>
                   <div class="row py-2 text-secondary">
-                    <div class="col-6">
-                      <i class="fas fa-bed"></i> Bedrooms: {{ listing.bedrooms }}</div>
-                    <div class="col-6">
-                      <i class="fas fa-bath"></i> Bathrooms: {{ listing.bathrooms }}</div>
+                    <div class="col-12">
+                      <i class="fas fa-cog"></i> Type: {{ project.type }}</div>
+                  </div>
+                  <div class="row py-2 text-secondary">
+                    <div class="col-12">
+                      <i class="fas fa-check-circle"></i> Completion: {{ project.completion }}%</div>
                   </div>
                   <hr>
                   <div class="row py-2 text-secondary">
-                    <div class="col-6">
-                      <i class="fas fa-user"></i> {{ listing.realtor }}</div>
+                    <div class="col-12">
+                      <i class="fas fa-user"></i> {{ project.certificate }}</div>
                   </div>
-                  <div class="row text-secondary pb-2">
-                    <div class="col-6">
-                      <i class="fas fa-clock"></i> {{ listing.list_date | timesince }}</div>
-                  </div>
+                  
                   <hr>
-                  <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block">More Info</a>
+                  <a href="{% url 'project' project.id %}" class="btn btn-primary btn-block">More Info</a>
                 </div>
               </div>
             </div>
           {% endfor %}
+
+      <div class="row">
+        <div class="col-md-12">
+          {% if projects.has_other_pages %}
+            <ul class="pagination">
+              {% if projects.has_previous %}
+                <li class="page-item">
+                  <a href="?page={{projects.previous_page_number}}" class="page-link">&laquo;</a>
+                </li>
+              {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link">&laquo;</a>
+                </li>
+              {% endif %}
+              {% for i in projects.paginator.page_range %}
+                {% if projects.number == i %}
+                  <li class="page-item active">
+                    <a class="page-link">{{i}}</a>
+                  </li>
+                {% else %}
+                  <li class="page-item">
+                    <a href="?page={{i}}" class="page-link">{{i}}</a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+              {% if projects.has_next %}
+                <li class="page-item">
+                  <a href="?page={{projects.next_page_number}}" class="page-link">&raquo;</a>
+                </li>
+              {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link">&raquo;</a>
+                </li>
+              {% endif %}
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+    </div>
         {% else %}
           <div class="col-md-12">
-            <p>No Listings Available</p>
+            <p>No Projects Available</p>
           </div>
         {% endif %}
 
@@ -143,14 +180,14 @@
         <div class="col-md-4">
           <i class="fas fa-home fa-4x mr-4"></i>
           <hr>
-          <h3>Propery Management</h3>
+          <h3>Infrastructure Development</h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, debitis nam! Repudiandae, provident iste consequatur
             hic dignissimos ratione ea quae.</p>
         </div>
         <div class="col-md-4">
           <i class="fas fa-suitcase fa-4x mr-4"></i>
           <hr>
-          <h3>Renting & Selling</h3>
+          <h3>Equipment and Services</h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, debitis nam! Repudiandae, provident iste consequatur
             hic dignissimos ratione ea quae.</p>
         </div>

@@ -42,32 +42,32 @@
                 <img class="card-img-top" src="{{ project.photo_main.url }}" alt="">
                 <div class="card-img-overlay">
                   <h2>
-                    <span class="badge badge-secondary text-white">${{ project.price | intcomma }}</span>
+                    <span class="badge badge-secondary text-white">NGN{{ project.price | intcomma }}</span>
                   </h2>
                 </div>
                 <div class="card-body">
                   <div class="listing-heading text-center">
                     <h4 class="text-primary">{{ project.title }}</h4>
                     <p>
-                      <i class="fas fa-map-marker text-secondary"></i> {{ project.city }} {{ project.state }}, {{ project.zipcode }}</p>
+                      <i class="fas fa-map-marker text-secondary"></i> {{ project.city }}, {{ project.state }}</p>
                   </div>
                   <hr>
                   <div class="row py-2 text-secondary">
                     <div class="col-6">
-                      <i class="fas fa-th-large"></i> Sqft: {{ project.sqft }}</div>
-                    <div class="col-6">
-                      <i class="fas fa-car"></i> Garage: {{ project.garage }}</div>
+                      <i class="fas fa-road"></i> Km: {{ project.km }}</div>
+                  </div>
+                  <div class="row py-2 text-secondary">
+                    <div class="col-12">
+                      <i class="fa fa-cog"></i> Type: {{ project.type }}</div>
                   </div>
                   <div class="row py-2 text-secondary">
                     <div class="col-6">
-                      <i class="fas fa-bed"></i> Bedrooms: {{ project.bedrooms }}</div>
-                    <div class="col-6">
-                      <i class="fas fa-bath"></i> Bathrooms: {{ project.bathrooms }}</div>
+                      <i class="fas fa-check-circle"></i> Completion: {{ project.Completion }}</div>
                   </div>
                   <hr>
                   <div class="row py-2 text-secondary">
                     <div class="col-12">
-                      <i class="fas fa-user"></i> {{ project.realtor }}</div>
+                      <i class="fas fa-user"></i> {{ project.certificate }}</div>
                   </div>
                   <div class="row text-secondary pb-2">
                     <div class="col-6">

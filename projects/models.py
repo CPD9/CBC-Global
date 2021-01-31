@@ -10,7 +10,7 @@ class Project(models.Model):
     state = models.CharField(max_length=100)
     type = models.CharField(max_length=100)
     description = models.TextField(blank=True)
-    price = models.IntegerField()
+    price = models.BigIntegerField(default=0)
     completion = models.IntegerField()
     km = models.DecimalField(max_digits=5, decimal_places=1)
     photo_main = models.ImageField(upload_to='photos/%Y/%m/%d/')
