@@ -8,7 +8,7 @@ class Project(models.Model):
     title = models.CharField(max_length=200)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
-    type = models.CharField(max_length=100)
+    type_con = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     price = models.BigIntegerField(default=0)
     completion = models.IntegerField()
@@ -20,7 +20,7 @@ class Project(models.Model):
     photo_4 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     photo_5 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     photo_6 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
-    is_completed = models.BooleanField(default=True)
+    is_completed = models.BooleanField(default=False)
     list_date = models.DateTimeField(default=dt.now, blank=True)
 
     def __str__(self):

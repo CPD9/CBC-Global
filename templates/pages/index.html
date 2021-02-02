@@ -13,50 +13,47 @@
           <h1 class="display-4 mb-4">
             Search On Numerious Projects By CBC Global
           </h1>
-          <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae quas, asperiores eveniet vel nostrum magnam
-            voluptatum tempore! Consectetur, id commodi!</p>
+          <p class="lead">Search from our selection of over 25+ ongoing and complete projects and constructions work.
+            Partnering with different State Government agencies and orginizations around the Globe.</p>
           <div class="search">
             <form action="{% url 'search' %}">
               <!-- Form Row 1 -->
               <div class="form-row">
                 <div class="col-md-4 mb-3">
                   <label class="sr-only">Keywords</label>
-                  <input type="text" name="keywords" class="form-control" placeholder="Keyword (Road, Building, Bridge etc)">
+                  <input type="text" name="keywords" class="form-control" placeholder="Keyword (Road, Bridge, etc.)" value="{{ values.keywords }}">
                 </div>
-
+  
                 <div class="col-md-4 mb-3">
                   <label class="sr-only">City</label>
-                  <input type="text" name="city" class="form-control" placeholder="City">
+                  <input type="text" name="city" class="form-control" placeholder="City" value="{{ values.city }}">
                 </div>
-
-
-
+  
                 <div class="col-md-4 mb-3">
                   <label class="sr-only">State</label>
                   <select name="state" class="form-control">
                     <option selected="true" disabled="disabled">State (All)</option>
-                        {% for key, value in state_choices.items %}
-                            <option value="{{ key }}"
-                            {% if key == values.state %}
-                            selected
-                            {% endif %}
+                    {% for key,value in state_choices.items %}
+                        <option value="{{ key }}" 
+                        {% if key == values.state %}
+                          selected
+                        {% endif %}
                         >{{ value }}</option>
-                        {% endfor %}
-                    </select>
+                      {% endfor %}
+                  </select>
                 </div>
               </div>
               <!-- Form Row 2 -->
               <div class="form-row">
                 <div class="col-md-8 mb-3">
                   <label class="sr-only">Construction Type</label>
-                  <select name="type" class="form-control">
+                  <select name="type_con" class="form-control">
                     <option selected="true" disabled="disabled">Construction Type</option>
-                    {% for key, value in type_choices.items %}
+                    {% for key, value in type_con_choices.items %}
                       <option value="{{ key }}">{{ value }}</option>
                     {% endfor %}
                   </select>
                 </div>
-                
               </div>
               <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
             </form>
@@ -100,7 +97,7 @@
                   </div>
                   <div class="row py-2 text-secondary">
                     <div class="col-12">
-                      <i class="fas fa-cog"></i> Type: {{ project.type }}</div>
+                      <i class="fas fa-cog"></i> Type: {{ project.type_con }}</div>
                   </div>
                   <div class="row py-2 text-secondary">
                     <div class="col-12">
@@ -174,22 +171,23 @@
           <i class="fas fa-comment fa-4x mr-4"></i>
           <hr>
           <h3>Consulting Services</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, debitis nam! Repudiandae, provident iste consequatur
-            hic dignissimos ratione ea quae.</p>
+          <p>Among our endless services and products we offer consulting services to several prestegious business partners and associates.
+            Inquiries can be made on viewing a project
+          </p>
         </div>
         <div class="col-md-4">
           <i class="fas fa-home fa-4x mr-4"></i>
           <hr>
           <h3>Infrastructure Development</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, debitis nam! Repudiandae, provident iste consequatur
-            hic dignissimos ratione ea quae.</p>
+          <p>We have been awarded and completed an execptional number of world class projects all around Nigeria which can be easily viewed on our Featured Listings page 
+            </p>
         </div>
         <div class="col-md-4">
           <i class="fas fa-suitcase fa-4x mr-4"></i>
           <hr>
           <h3>Equipment and Services</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, debitis nam! Repudiandae, provident iste consequatur
-            hic dignissimos ratione ea quae.</p>
+          <p>CBC Global Civil & Building Construction NIG LTD has a wide range of equipment and tools for major civil constructions and infrastructure development. 
+            </p>
         </div>
       </div>
     </div>

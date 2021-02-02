@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from projects.choices import state_choices, type_choices
+from projects.choices import state_choices, type_con_choices
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 from projects.models import Project
@@ -19,7 +19,7 @@ def index(request):
         'projects': projects,
         'projects': paged_projects,
         'state_choices': state_choices,
-        'type_choices': type_choices
+        'type_con_choices': type_con_choices
     }
 
     return render(request, 'pages/index.html', context)
