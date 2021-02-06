@@ -79,40 +79,40 @@
       <div class="row">
         {% if projects %}
           {% for project in projects %}
-          <div class="col-md-6 col-lg-4 mb-4">
+            <!-- project 1 -->
+            <div class="col-md-6 col-lg-4 mb-4">
               <div class="card listing-preview">
                 <img class="card-img-top" src="{{ project.photo_main.url }}" alt="">
                 <div class="card-img-overlay">
                   <h2>
-                    <span class="badge badge-secondary text-white">${{ project.price | intcomma }}</span>
+                    <span class="badge badge-secondary text-white">NGN {{ project.price | intword }}</span>
                   </h2>
                 </div>
                 <div class="card-body">
                   <div class="listing-heading text-center">
                     <h4 class="text-primary">{{ project.title }}</h4>
                     <p>
-                      <i class="fas fa-map-marker text-secondary"></i> {{ project.city }} {{ project.state }}, {{ project.zipcode }}</p>
+                      <i class="fas fa-map-marker text-secondary"></i> {{ project.city }}, {{ project.state }}</p>
                   </div>
                   <hr>
                   <div class="row py-2 text-secondary">
                     <div class="col-6">
-                      <i class="fas fa-th-large"></i> Sqft: {{ project.sqft }}</div>
-                    <div class="col-6">
-                      <i class="fas fa-car"></i> Garage: {{ project.garage }}</div>
+                      <i class="fas fa-th-large"></i> KM: {{ project.km }}</div>
                   </div>
                   <div class="row py-2 text-secondary">
-                    <div class="col-6">
-                      <i class="fas fa-bed"></i> Type: {{ project.type_con }}</div>
+                    <div class="col-12">
+                      <i class="fas fa-cog"></i> Type: {{ project.type_con }}</div>
+                  </div>
+                  <div class="row py-2 text-secondary">
+                    <div class="col-12">
+                      <i class="fas fa-check-circle"></i> Completion: {{ project.completion }}%</div>
                   </div>
                   <hr>
                   <div class="row py-2 text-secondary">
                     <div class="col-12">
                       <i class="fas fa-user"></i> {{ project.certificate }}</div>
                   </div>
-                  <div class="row text-secondary pb-2">
-                    <div class="col-6">
-                      <i class="fas fa-clock"></i> {{ project.list_date | timesince }}</div>
-                  </div>
+                  
                   <hr>
                   <a href="{% url 'project' project.id %}" class="btn btn-primary btn-block">More Info</a>
                 </div>

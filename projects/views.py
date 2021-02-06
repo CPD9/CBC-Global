@@ -59,6 +59,7 @@ def search(request):
 
   context = {
     'state_choices': state_choices,
+    'type_con_choices': type_con_choices,
     
     'projects': queryset_list,
     'values': request.GET
